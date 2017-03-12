@@ -10,4 +10,12 @@ public class Point {
     this.y = y;
   }
 
+  public double distanceTo (Point p){
+    double deltaX = this.x - p.x;
+    double deltaY = this.y - p.y;
+    double distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+    return distance;
+  }
+
 }
