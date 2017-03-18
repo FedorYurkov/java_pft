@@ -30,4 +30,8 @@ public class HelperBase {
       return false;
     }
   }
+
+  public void alertConfirmation() {
+    wd.switchTo().alert().accept();
+  }
 }
