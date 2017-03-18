@@ -6,10 +6,10 @@ public class GroupDelitionTests extends TestBase {
 
     @Test
     public void testGroupDelition() {
-        app.gotoGroupPage();
-        app.selectGroup();
-        app.deleteSelectedGroup();
-        app.returnToGroupPage();
+        app.getNavigationHelper().gotoGroupPage();
+        app.getGroupHelper().selectGroup();
+        app.getGroupHelper().deleteSelectedGroup();
+        app.getGroupHelper().returnToGroupPage();
     }
 
 }
