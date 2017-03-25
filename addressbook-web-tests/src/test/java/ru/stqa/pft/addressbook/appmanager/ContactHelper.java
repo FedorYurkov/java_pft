@@ -29,8 +29,8 @@ public class ContactHelper extends HelperBase {
     type(By.name("home"), contactData.getTelHome());
     type(By.name("mobile"), contactData.getTelMob());
     type(By.name("work"), contactData.getTelWork());
-    type(By.name("fax"),contactData.getFax());
-    type(By.name("email"), contactData.getEmai() );
+    type(By.name("fax"), contactData.getFax());
+    type(By.name("email"), contactData.getEmai());
     type(By.name("email2"), contactData.getEmail2());
     type(By.name("email3"), contactData.getEmail3());
     type(By.name("homepage"), contactData.getSite());
@@ -38,7 +38,7 @@ public class ContactHelper extends HelperBase {
     type(By.name("phone2"), contactData.getHome());
     type(By.name("notes"), contactData.getNotes());
 
-    if (creation){
+    if (creation) {
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
@@ -64,5 +64,15 @@ public class ContactHelper extends HelperBase {
 
   public void submitContactModification() {
     click(By.name("update"));
+  }
+
+  public void createContact(ContactData contact) {
+    fillContactForm(contact, true);
+    submitContactForm();
+    returnToHomePage();
+  }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.name("selected[]"));
   }
 }
