@@ -1,6 +1,7 @@
 package ru.stqa.pft.addressbook.model;
 
 public class ContactData {
+
   private int id;
   private final String firstName;
   private final String midName;
@@ -66,6 +67,10 @@ public class ContactData {
     this.secondaryAddress = secondaryAddress;
     this.home = home;
     this.notes = notes;
+  }
+
+  public int getId() {
+    return id;
   }
 
   public String getFirstName() {
