@@ -1,6 +1,7 @@
 package ru.stqa.pft.addressbook.model;
 
 public class ContactData {
+  private int id;
   private final String firstName;
   private final String midName;
   private final String lastName;
@@ -22,6 +23,30 @@ public class ContactData {
   private final String notes;
 
   public ContactData(String firstName, String midName, String lastName, String nick, String title, String company, String address, String telHome, String telMob, String telWork, String fax, String emai, String email2, String email3, String site, String group, String secondaryAddress, String home, String notes) {
+    this.id = Integer.MAX_VALUE;
+    this.firstName = firstName;
+    this.midName = midName;
+    this.lastName = lastName;
+    this.nick = nick;
+    this.title = title;
+    this.company = company;
+    this.address = address;
+    this.telHome = telHome;
+    this.telMob = telMob;
+    this.telWork = telWork;
+    this.fax = fax;
+    this.emai = emai;
+    this.email2 = email2;
+    this.email3 = email3;
+    this.site = site;
+    this.group = group;
+    this.secondaryAddress = secondaryAddress;
+    this.home = home;
+    this.notes = notes;
+  }
+
+  public ContactData(int id, String firstName, String midName, String lastName, String nick, String title, String company, String address, String telHome, String telMob, String telWork, String fax, String emai, String email2, String email3, String site, String group, String secondaryAddress, String home, String notes) {
+    this.id = id;
     this.firstName = firstName;
     this.midName = midName;
     this.lastName = lastName;
@@ -117,5 +142,34 @@ public class ContactData {
 
   public String getGroup() {
     return group;
+  }
+
+  @Override
+  public String toString() {
+    return "ContactData{" +
+            "id=" + id +
+            ", firstName='" + firstName + '\'' +
+            ", lastName='" + lastName + '\'' +
+            '}';
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    ContactData that = (ContactData) o;
+
+    if (id != that.id) return false;
+    if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) return false;
+    return lastName != null ? lastName.equals(that.lastName) : that.lastName == null;
+  }
+
+  @Override
+  public int hashCode() {
+    int result = id;
+    result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+    result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+    return result;
   }
 }
