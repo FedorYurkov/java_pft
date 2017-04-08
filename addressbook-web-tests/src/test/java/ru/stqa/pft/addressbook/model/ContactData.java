@@ -10,9 +10,9 @@ public class ContactData {
   private String title;
   private String company;
   private String address;
-  private String telHome;
-  private String telMob;
-  private String telWork;
+  private String homePhone;
+  private String mobilePhone;
+  private String workPhone;
   private String fax;
   private String email;
   private String email2;
@@ -63,18 +63,18 @@ public class ContactData {
     return this;
   }
 
-  public ContactData withTelHome(String telHome) {
-    this.telHome = telHome;
+  public ContactData withHomePhone(String homePhone) {
+    this.homePhone = homePhone;
     return this;
   }
 
-  public ContactData withTelMob(String telMob) {
-    this.telMob = telMob;
+  public ContactData withMobilePhone(String mobilePhone) {
+    this.mobilePhone = mobilePhone;
     return this;
   }
 
-  public ContactData withTelWork(String telWork) {
-    this.telWork = telWork;
+  public ContactData withWorkPhone(String workPhone) {
+    this.workPhone = workPhone;
     return this;
   }
 
@@ -156,15 +156,15 @@ public class ContactData {
   }
 
   public String getTelHome() {
-    return telHome;
+    return homePhone;
   }
 
   public String getTelMob() {
-    return telMob;
+    return mobilePhone;
   }
 
   public String getTelWork() {
-    return telWork;
+    return workPhone;
   }
 
   public String getFax() {
