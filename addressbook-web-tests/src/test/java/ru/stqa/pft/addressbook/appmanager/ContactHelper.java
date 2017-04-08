@@ -70,7 +70,7 @@ public class ContactHelper extends HelperBase {
     click(By.name("update"));
   }
 
-  public void createContact(ContactData contact) {
+  public void create(ContactData contact) {
     fillContactForm(contact, true);
     submitContactForm();
     returnToHomePage();
@@ -80,7 +80,7 @@ public class ContactHelper extends HelperBase {
     return isElementPresent(By.name("selected[]"));
   }
 
-  public List<ContactData> getContactList() {
+  public List<ContactData> all() {
     List<ContactData> contacts = new ArrayList<ContactData>();
 
     List<WebElement>  elements = wd.findElements(By.name("entry"));
