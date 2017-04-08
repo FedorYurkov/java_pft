@@ -2,71 +2,125 @@ package ru.stqa.pft.addressbook.model;
 
 public class ContactData {
 
-  private int id;
-  private final String firstName;
-  private final String midName;
-  private final String lastName;
-  private final String nick;
-  private final String title;
-  private final String company;
-  private final String address;
-  private final String telHome;
-  private final String telMob;
-  private final String telWork;
-  private final String fax;
-  private final String emai;
-  private final String email2;
-  private final String email3;
-  private final String site;
+  private int id = Integer.MAX_VALUE;
+  private String firstName;
+  private String midName;
+  private String lastName;
+  private String nick;
+  private String title;
+  private String company;
+  private String address;
+  private String telHome;
+  private String telMob;
+  private String telWork;
+  private String fax;
+  private String email;
+  private String email2;
+  private String email3;
+  private String site;
   private String group;
-  private final String secondaryAddress;
-  private final String home;
-  private final String notes;
+  private String secondaryAddress;
+  private String home;
+  private String notes;
 
-  public ContactData(String firstName, String midName, String lastName, String nick, String title, String company, String address, String telHome, String telMob, String telWork, String fax, String emai, String email2, String email3, String site, String group, String secondaryAddress, String home, String notes) {
-    this.id = Integer.MAX_VALUE;
-    this.firstName = firstName;
-    this.midName = midName;
-    this.lastName = lastName;
-    this.nick = nick;
-    this.title = title;
-    this.company = company;
-    this.address = address;
-    this.telHome = telHome;
-    this.telMob = telMob;
-    this.telWork = telWork;
-    this.fax = fax;
-    this.emai = emai;
-    this.email2 = email2;
-    this.email3 = email3;
-    this.site = site;
-    this.group = group;
-    this.secondaryAddress = secondaryAddress;
-    this.home = home;
-    this.notes = notes;
+  public ContactData withId(int id) {
+    this.id = id;
+    return this;
   }
 
-  public ContactData(int id, String firstName, String midName, String lastName, String nick, String title, String company, String address, String telHome, String telMob, String telWork, String fax, String emai, String email2, String email3, String site, String group, String secondaryAddress, String home, String notes) {
-    this.id = id;
+  public ContactData withFirstName(String firstName) {
     this.firstName = firstName;
+    return this;
+  }
+
+  public ContactData withMidName(String midName) {
     this.midName = midName;
+    return this;
+  }
+
+  public ContactData withLastName(String lastName) {
     this.lastName = lastName;
+    return this;
+  }
+
+  public ContactData withNick(String nick) {
     this.nick = nick;
+    return this;
+  }
+
+  public ContactData withTitle(String title) {
     this.title = title;
+    return this;
+  }
+
+  public ContactData withCompany(String company) {
     this.company = company;
+    return this;
+  }
+
+  public ContactData withAddress(String address) {
     this.address = address;
+    return this;
+  }
+
+  public ContactData withTelHome(String telHome) {
     this.telHome = telHome;
+    return this;
+  }
+
+  public ContactData withTelMob(String telMob) {
     this.telMob = telMob;
+    return this;
+  }
+
+  public ContactData withTelWork(String telWork) {
     this.telWork = telWork;
+    return this;
+  }
+
+  public ContactData withFax(String fax) {
     this.fax = fax;
-    this.emai = emai;
+    return this;
+  }
+
+  public ContactData withEmail(String email) {
+    this.email = email;
+    return this;
+  }
+
+  public ContactData withEmail2(String email2) {
     this.email2 = email2;
+    return this;
+  }
+
+  public ContactData withEmail3(String email3) {
     this.email3 = email3;
+    return this;
+  }
+
+  public ContactData withSite(String site) {
     this.site = site;
+    return this;
+  }
+
+  public ContactData withGroup(String group) {
     this.group = group;
+    return this;
+  }
+
+  public ContactData withSecondaryAddress(String secondaryAddress) {
     this.secondaryAddress = secondaryAddress;
+    return this;
+  }
+
+  public ContactData withHome(String home) {
     this.home = home;
+    return this;
+  }
+
+  public ContactData withNotes(String notes) {
     this.notes = notes;
+    return this;
   }
 
   public int getId() {
@@ -118,7 +172,7 @@ public class ContactData {
   }
 
   public String getEmai() {
-    return emai;
+    return email;
   }
 
   public String getEmail2() {
@@ -165,14 +219,16 @@ public class ContactData {
 
     ContactData that = (ContactData) o;
 
+    if (id != that.id) return false;
     if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) return false;
-    return lastName != null ? lastName.equals(that.lastName) : that.lastName == null;
+    return midName != null ? midName.equals(that.midName) : that.midName == null;
   }
 
   @Override
   public int hashCode() {
-    int result = firstName != null ? firstName.hashCode() : 0;
-    result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+    int result = id;
+    result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+    result = 31 * result + (midName != null ? midName.hashCode() : 0);
     return result;
   }
 }
