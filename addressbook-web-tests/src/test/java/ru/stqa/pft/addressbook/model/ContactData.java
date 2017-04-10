@@ -155,15 +155,15 @@ public class ContactData {
     return address;
   }
 
-  public String getTelHome() {
+  public String getHomePhone() {
     return homePhone;
   }
 
-  public String getTelMob() {
+  public String getMobilePhone() {
     return mobilePhone;
   }
 
-  public String getTelWork() {
+  public String getWorkPhone() {
     return workPhone;
   }
 

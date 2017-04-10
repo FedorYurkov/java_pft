@@ -24,9 +24,9 @@ public class ContactHelper extends HelperBase {
     type(By.name("title"), contactData.getTitle());
     type(By.name("company"), contactData.getCompany());
     type(By.name("address"), contactData.getAddress());
-    type(By.name("home"), contactData.getTelHome());
-    type(By.name("mobile"), contactData.getTelMob());
-    type(By.name("work"), contactData.getTelWork());
+    type(By.name("home"), contactData.getHomePhone());
+    type(By.name("mobile"), contactData.getMobilePhone());
+    type(By.name("work"), contactData.getWorkPhone());
     type(By.name("fax"), contactData.getFax());
     type(By.name("email"), contactData.getEmai());
     type(By.name("email2"), contactData.getEmail2());
@@ -109,14 +109,16 @@ public class ContactHelper extends HelperBase {
   public Contacts all() {
     Contacts contacts = new Contacts();
 
-    List<WebElement>  elements = wd.findElements(By.name("entry"));
+    List<WebElement>  rows = wd.findElements(By.name("entry"));
+    for (WebElement row : rows) {
+      List<WebElement> cells = row.findElements(By.tagName("td"));
+      int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
+      String lastName = cells.get(1).getText();
+      String firstName = cells.get(2).getText();
+      String[] phones = cells.get(5).getText().split("\n");
 
-    for (WebElement element : elements) {
-      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      String LastName = element.findElement(By.xpath(".//td[2]")).getText();
-      String FirstName = element.findElement(By.xpath(".//td[3]")).getText();
-
-      contacts.add(new ContactData().withId(id).withFirstName(FirstName).withLastName(LastName));
+      contacts.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName)
+                                    .withHomePhone(phones[0]).withMobilePhone(phones[1]).withWorkPhone(phones[2]));
     }
     return contacts;
   }
