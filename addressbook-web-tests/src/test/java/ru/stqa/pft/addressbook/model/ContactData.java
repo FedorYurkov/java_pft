@@ -17,15 +17,27 @@ public class ContactData {
   private String allPhones;
 
   private String fax;
+
   private String email;
   private String email2;
   private String email3;
+  private String allEmails;
+
   private String site;
   private String group;
   private String secondaryAddress;
   private String home;
   private String notes;
 
+
+  public String getAllEmails() {
+    return allEmails;
+  }
+
+  public ContactData withAllEmails(String allEmails) {
+    this.allEmails = allEmails;
+    return this;
+  }
 
   public String getAllPhones() {
     return allPhones;
