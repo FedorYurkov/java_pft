@@ -29,6 +29,16 @@ public class ContactData {
   private String home;
   private String notes;
 
+  private String detailsInfo;
+
+  public String getDetailsInfo() {
+    return detailsInfo;
+  }
+
+  public ContactData withDetailsInfo(String detilsInfo) {
+    this.detailsInfo = detilsInfo;
+    return this;
+  }
 
   public String getAllEmails() {
     return allEmails;
