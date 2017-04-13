@@ -15,7 +15,8 @@ public class ContactDataFromDetailsPageTests extends TestBase {
   public void testContactDataFromDetailsPage() {
     app.goTo().homePage();
 
-    ContactData contact = new ContactData().withId(148);  // тестовый контакт с id = 148;
+    ContactData contact = new ContactData().withId(app.contact().all()
+                                                    .stream().min((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
 
     ContactData contactInfoFromDetailsPage = app.contact().infoFromDetailsPage(contact);
     ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
