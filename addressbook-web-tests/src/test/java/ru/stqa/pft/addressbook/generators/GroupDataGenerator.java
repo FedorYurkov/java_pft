@@ -12,7 +12,6 @@ import java.util.List;
 public class GroupDataGenerator {
 
   public static void main(String[] args) throws IOException {
-    System.out.println(new File(".").getAbsolutePath());
     int count = Integer.parseInt(args[0]);
     File file = new File(args[1]);
 
@@ -22,9 +21,10 @@ public class GroupDataGenerator {
   }
 
   private static void save(List<GroupData> groups, File file) throws IOException {
+    System.out.println(new File(".").getAbsolutePath());
     Writer writer = new FileWriter(file);
     for (GroupData group : groups){
-      writer.write(String.format("%s, %s, %s\n", group.getName(), group.getHeader(), group.getFooter()));
+      writer.write(String.format("%s;%s;%s\n", group.getName(), group.getHeader(), group.getFooter()));
     }
 
     writer.close();
