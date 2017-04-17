@@ -37,6 +37,7 @@ public class ContactCreationTests extends TestBase {
 
   @Test (dataProvider = "validContactsFromXml")
   public void testContactCreation(ContactData contact) {
+    app.goTo().homePage();
     Contacts before = app.contact().all();
 
     app.goTo().AddNewPage();
