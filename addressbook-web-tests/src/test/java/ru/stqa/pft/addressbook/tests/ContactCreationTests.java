@@ -38,16 +38,17 @@ public class ContactCreationTests extends TestBase {
   @Test (dataProvider = "validContactsFromXml")
   public void testContactCreation(ContactData contact) {
     app.goTo().homePage();
-    Contacts before = app.contact().all();
+    Contacts before = app.db().contacts();
 
     app.goTo().AddNewPage();
     app.contact().create(contact);
 
-    Contacts after = app.contact().all();
+    Contacts after = app.db().contacts();
 
     assertThat(after.size(), equalTo(before.size() + 1));
+
     assertThat(after, equalTo(
-            before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
+            before.withAdded(app.db().contactById(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
   }
 
 }
