@@ -2,7 +2,7 @@
   <contact>
     <firstName>Fname 0</firstName>
     <lastName>Lname 0</lastName>
-    <group>test1</group>
     <photo>src\test\resources\foto.png</photo>
+    <groups/>
   </contact>
 </list>

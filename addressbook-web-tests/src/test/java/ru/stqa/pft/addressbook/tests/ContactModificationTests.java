@@ -4,6 +4,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.File;
 
@@ -17,7 +18,8 @@ public class ContactModificationTests extends TestBase {
   public void ensurePreconditions() {
     if(app.db().contacts().size() == 0) {
       app.goTo().AddNewPage();
-      app.contact().create(new ContactData().withFirstName("Fname").withLastName("Lname").withGroup("test1"));
+      Groups groups = app.db().groups();
+      app.contact().create(new ContactData().withFirstName("Fname").withLastName("Lname").inGroup(groups.iterator().next()));
     }
     app.goTo().homePage();
   }

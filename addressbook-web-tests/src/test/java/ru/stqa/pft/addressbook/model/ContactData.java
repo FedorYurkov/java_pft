@@ -6,10 +6,12 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
 
 @XStreamAlias("contact")
 @Entity
-@Table (name = "addressbook")
+@Table(name = "addressbook")
 public class ContactData {
   @XStreamOmitField
   @Id
@@ -62,12 +64,11 @@ public class ContactData {
   @Column(name = "homepage")
   @Type(type = "text")
   private String site;
-  @Transient
-  private String group;
+
   @Column(name = "address2")
   @Type(type = "text")
   private String secondaryAddress;
-  @Column (name = "phone2")
+  @Column(name = "phone2")
   @Type(type = "text")
   private String home;
   @Column(name = "notes")
@@ -80,6 +81,10 @@ public class ContactData {
   @Column(name = "photo")
   @Type(type = "text")
   private String photo;
+
+  @ManyToMany (fetch = FetchType.EAGER)
+  @JoinTable(name = "address_in_groups", joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
+  private Set<GroupData> groups = new HashSet<GroupData>();
 
   public File getPhoto() {
     return new File(photo);
@@ -198,11 +203,6 @@ public class ContactData {
     return this;
   }
 
-  public ContactData withGroup(String group) {
-    this.group = group;
-    return this;
-  }
-
   public ContactData withSecondaryAddress(String secondaryAddress) {
     this.secondaryAddress = secondaryAddress;
     return this;
@@ -282,7 +282,7 @@ public class ContactData {
     return site;
   }
 
-    public String getSecondaryAddress() {
+  public String getSecondaryAddress() {
     return secondaryAddress;
   }
 
@@ -294,8 +294,8 @@ public class ContactData {
     return notes;
   }
 
-  public String getGroup() {
-    return group;
+  public Groups getGroups() {
+    return new Groups(groups);
   }
 
   @Override
@@ -317,10 +317,10 @@ public class ContactData {
             ", email2='" + email2 + '\'' +
             ", email3='" + email3 + '\'' +
             ", site='" + site + '\'' +
-            ", group='" + group + '\'' +
             ", secondaryAddress='" + secondaryAddress + '\'' +
             ", home='" + home + '\'' +
             ", notes='" + notes + '\'' +
+            ", groups=" + groups +
             '}';
   }
 
@@ -347,7 +347,6 @@ public class ContactData {
     if (email2 != null ? !email2.equals(that.email2) : that.email2 != null) return false;
     if (email3 != null ? !email3.equals(that.email3) : that.email3 != null) return false;
     if (site != null ? !site.equals(that.site) : that.site != null) return false;
-    if (group != null ? !group.equals(that.group) : that.group != null) return false;
     if (secondaryAddress != null ? !secondaryAddress.equals(that.secondaryAddress) : that.secondaryAddress != null)
       return false;
     if (home != null ? !home.equals(that.home) : that.home != null) return false;
@@ -372,10 +371,15 @@ public class ContactData {
     result = 31 * result + (email2 != null ? email2.hashCode() : 0);
     result = 31 * result + (email3 != null ? email3.hashCode() : 0);
     result = 31 * result + (site != null ? site.hashCode() : 0);
-    result = 31 * result + (group != null ? group.hashCode() : 0);
+
     result = 31 * result + (secondaryAddress != null ? secondaryAddress.hashCode() : 0);
     result = 31 * result + (home != null ? home.hashCode() : 0);
     result = 31 * result + (notes != null ? notes.hashCode() : 0);
     return result;
+  }
+
+  public ContactData inGroup(GroupData group) {
+      groups.add(group);
+      return this;
   }
 }

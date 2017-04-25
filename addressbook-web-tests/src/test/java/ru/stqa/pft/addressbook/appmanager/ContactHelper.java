@@ -38,12 +38,12 @@ public class ContactHelper extends HelperBase {
 
     attach(By.name("photo"), contactData.getPhoto());
 
-    if (creation) {
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+    if (contactData.getGroups().size() > 0) {
+      Assert.assertTrue(contactData.getGroups().size() == 1);
+      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
-
   }
 
   public void submitContactForm() {
@@ -112,7 +112,7 @@ public class ContactHelper extends HelperBase {
 
     wd.navigate().back();
 
-    return  new ContactData().withId(contact.getId()).withFirstName(firstName).withLastName(lastName)
+    return new ContactData().withId(contact.getId()).withFirstName(firstName).withLastName(lastName)
             .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work)
             .withEmail(email).withEmail2(email2).withEmail3(email3)
             .withAddress(address);
@@ -134,7 +134,7 @@ public class ContactHelper extends HelperBase {
   public Contacts all() {
     Contacts contacts = new Contacts();
 
-    List<WebElement>  rows = wd.findElements(By.name("entry"));
+    List<WebElement> rows = wd.findElements(By.name("entry"));
     for (WebElement row : rows) {
       List<WebElement> cells = row.findElements(By.tagName("td"));
       int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
@@ -145,9 +145,9 @@ public class ContactHelper extends HelperBase {
       String allPhones = cells.get(5).getText();
 
       contacts.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName)
-                                    .withAllPhones(allPhones)
-                                    .withAllEmails(allEmails)
-                                    .withAddress(address));
+              .withAllPhones(allPhones)
+              .withAllEmails(allEmails)
+              .withAddress(address));
     }
     return contacts;
   }
