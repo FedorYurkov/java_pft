@@ -90,6 +90,13 @@ public class ContactData {
     return new File(photo);
   }
 
+  public boolean isPhotoInContact () {
+    if (photo != null) {
+      return true;
+    }
+    return false;
+  }
+
   public ContactData withPhoto(File photo) {
     this.photo = photo.getPath();
     return this;
