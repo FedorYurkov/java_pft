@@ -171,4 +171,12 @@ public class ContactHelper extends HelperBase {
     wd.findElement(By.name("add")).click();
   }
 
+  public void deleteContactFromGroup(ContactData contact) {
+    selectContactById(contact.getId());
+    initDeletingFromGrop();
+  }
+
+  private void initDeletingFromGrop() {
+    wd.findElement(By.name("remove")).click();
+  }
 }

@@ -23,7 +23,7 @@ public class AddContactToGroupTest extends TestBase {
 
     // Если нет ни одной группы - создадим
     if (app.db().groups().size() == 0) {
-      app.goTo().groupPage();
+      app.goTo().groupsPage();
       app.group().create(new GroupData().withName("test1"));
     }
   }

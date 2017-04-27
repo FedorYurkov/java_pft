@@ -14,7 +14,7 @@ public class GroupDelitionTests extends TestBase {
   @BeforeMethod
   public void ensurePreconditions() {
     if(app.db().groups().size() == 0) {
-      app.goTo().groupPage();
+      app.goTo().groupsPage();
       app.group().create(new GroupData().withName("test1"));
     }
   }
@@ -25,7 +25,7 @@ public class GroupDelitionTests extends TestBase {
 
     GroupData deletedGroup = before.iterator().next();
 
-    app.goTo().groupPage();
+    app.goTo().groupsPage();
     app.group().delete(deletedGroup);
 
     assertThat(app.group().count(), equalTo(before.size()-1));
