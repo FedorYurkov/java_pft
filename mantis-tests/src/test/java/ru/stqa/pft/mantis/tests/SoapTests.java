@@ -1,5 +1,6 @@
 package ru.stqa.pft.mantis.tests;
 
+import biz.futureware.mantis.rpc.soap.client.IssueData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.mantis.model.Issue;
@@ -34,6 +35,13 @@ public class SoapTests extends TestBase {
 
     Issue created = app.soap().addIssue(issue);
     assertEquals(issue.getSummary(), created.getSummary());
+  }
+
+  @Test
+  public void testSkip() throws RemoteException, ServiceException, MalformedURLException {
+    int blockedIssueId = 3; // Указан id конкретного, блокирующего данный тест, бага
+    skipIfNotFixed(blockedIssueId);
+    System.out.println("Я выполнился!");
   }
 
 }
